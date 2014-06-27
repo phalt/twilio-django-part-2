@@ -9,7 +9,7 @@ from twilio.twiml import Response
 def gather_digits(request):
 
     r = Response()
-    with r.gather(action='/repond/') as g:
+    with r.gather(action='/respond/', numDigits=1) as g:
         g.say('Press one to hear a song, two to receive an SMS')
 
     return r
