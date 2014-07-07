@@ -17,14 +17,14 @@ def gather_digits(request):
 @twilio_view
 def handle_response(request):
 
-    digits = int(request.POST.get('Digits', ''))
+    digits = request.POST.get('Digits', '')
 
     r = Response()
 
-    if digits == 1:
+    if digits == '1':
         r.play('http://bit.ly/phaltsw')
 
-    if digits == 2:
+    if digits == '2':
         number = request.POST.get('From', '')
         r.say('A text message is on its way')
         r.sms('You looking lovely today!', to=number)
