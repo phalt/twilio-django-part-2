@@ -7,7 +7,9 @@ def gather_digits(request):
 
     twilio_response = Response()
     with twilio_response.gather(action='/respond/', numDigits=1) as g:
-        g.say('Press one to hear a song, two to receive an SMS', loop=0)
+        g.say('Press one to hear a song, two to receive an SMS.')
+
+    twilio_response.redirect('/gather/')
 
     return twilio_response
 
