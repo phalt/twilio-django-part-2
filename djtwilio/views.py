@@ -2,16 +2,20 @@
 from django_twilio.decorators import twilio_view
 from twilio.twiml import Response
 
+
 @twilio_view
 def gather_digits(request):
 
+    msg = 'Press one to hear a song, two to receive an SMS.'
+
     twilio_response = Response()
     with twilio_response.gather(action='/respond/', numDigits=1) as g:
-        g.say('Press one to hear a song, two to receive an SMS.')
-
-    twilio_response.redirect('/gather/')
+        g.say(msg)
+        g.pause(length=1)
+        g.say(msg)
 
     return twilio_response
+
 
 @twilio_view
 def handle_response(request):
